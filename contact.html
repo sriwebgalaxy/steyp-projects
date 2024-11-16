@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Exclusive</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Container for contact form */
+        .contact-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3f72af;
+            outline: none;
+        }
+
+        .form-group .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #3f72af;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2c5b8b;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1em;
+        }
+
+        .footer a {
+            color: #3f72af;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Google Map Embed Container */
+        .map-container {
+            margin-top: 40px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Contact Form Container -->
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+
+        <form id="contactForm">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error" id="nameError"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <div class="error" id="messageError"></div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+
+        <!-- Footer Link -->
+        <div class="footer">
+            <p>Need help? <a href="mailto:support@example.com">Email Support</a></p>
+        </div>
+    </div>
+
+    <!-- Google Map Embed -->
+    <div class="map-container">
+        <h3>Our Location</h3>
+        <!-- Example Google Map Embed -->
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.364667289245!2d144.95373631532047!3d-37.81720997975194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d5da87bfeff%3A0x5045675218ce6e0!2zUGFyayBFc3RhYmlzaG1lbnQgVGFyaW5nIFBsYWNlIFJlcywgTWVsbG91cm5lLCBFYXN0IFZpY3RvcmlhIFNB!5e0!3m2!1sen!2sus!4v1623453573856!5m2!1sen!2sus"
+            allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Clear previous errors
+            clearErrors();
+
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById('name').value;
+            if (name.trim() === "") {
+                isValid = false;
+                document.getElementById('nameError').textContent = "Please enter your name.";
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                isValid = false;
+                document.getElementById('emailError').textContent = "Please enter a valid email address.";
+            }
+
+            // Message validation
+            const message = document.getElementById('message').value;
+            if (message.trim() === "") {
+                isValid = false;
+                document.getElementById('messageError').textContent = "Please enter a message.";
+            }
+
+            if (isValid) {
+                alert("Your message has been sent successfully!");
+                // Handle form submission (send data to the server)
+            }
+        });
+
+        function clearErrors() {
+            document.getElementById('nameError').textContent = "";
+            document.getElementById('emailError').textContent = "";
+            document.getElementById('messageError').textContent = "";
+        }
+    </script>
+
+</body>
+
+</html>
